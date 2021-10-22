@@ -14,13 +14,11 @@ using namespace std;
 string Format::ElapsedTime(long seconds) {
   long timeLeft = seconds % 3600;
   long hours = (seconds - timeLeft) / 3600;
-  cout << "hours:" <<hours<<"\n";
-
   string hoursString = (hours < 10 ? "0" : "") + to_string(hours);
 
-  
-  long minutes = (timeLeft - timeLeft % 60) / 60;
-  timeLeft = timeLeft % 60;
+  long minutesLeft = timeLeft % 60;
+  long minutes = (timeLeft - minutesLeft) / 60;
+  timeLeft = minutesLeft;
 
   string minutesString = (minutes < 10 ? "0" : "") + to_string(minutes);
 
