@@ -6,6 +6,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <iostream>
 
 using std::stof;
 using std::string;
@@ -14,19 +15,28 @@ using std::vector;
 
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::OperatingSystem() {
+return LinuxParser::getValueFromFile("PRETTY_NAME", kOSPath, true);
+}
+
+string LinuxParser::getValueFromFile(std::string searchValue, std::string filePath, bool doReplacements){
   string line;
   string key;
   string value;
-  std::ifstream filestream(kOSPath);
+  std::ifstream filestream(filePath);
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
+     
+     if(doReplacements){
       std::replace(line.begin(), line.end(), ' ', '_');
       std::replace(line.begin(), line.end(), '=', ' ');
       std::replace(line.begin(), line.end(), '"', ' ');
+     }
       std::istringstream linestream(line);
       while (linestream >> key >> value) {
-        if (key == "PRETTY_NAME") {
+        if (key == searchValue) {
+          if(doReplacements){
           std::replace(value.begin(), value.end(), '_', ' ');
+          }
           return value;
         }
       }
@@ -34,6 +44,8 @@ string LinuxParser::OperatingSystem() {
   }
   return value;
 }
+
+
 
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::Kernel() {
@@ -68,10 +80,20 @@ vector<int> LinuxParser::Pids() {
   return pids;
 }
 
-// TODO: Read and return the system memory utilization
-float LinuxParser::MemoryUtilization() { return 47.11; }
+// Read and return the system memory utilization
+float LinuxParser::MemoryUtilization() { 
+  std::string memTotal = LinuxParser::getValueFromFile("MemTotal:", kProcDirectory+kMeminfoFilename, false);
+  std::string memFree = LinuxParser::getValueFromFile("MemFree:", kProcDirectory+kMeminfoFilename, false);
 
-// TODO: Read and return the system uptime
+  int memTotalInt = std::stoi(memTotal);
+  int memFreeInt = std::stoi(memFree);
+
+  float result  = 100.00 / memTotalInt * (memTotalInt-memFreeInt); 
+
+  return result/100;
+  }
+
+// Read and return the system uptime
 long LinuxParser::UpTime() {
   string uptime;
   string line;

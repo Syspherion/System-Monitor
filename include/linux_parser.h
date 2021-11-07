@@ -26,6 +26,7 @@ int TotalProcesses();
 int RunningProcesses();
 std::string OperatingSystem();
 std::string Kernel();
+std::string getValueFromFile(std::string searchValue, std::string filePath, bool doReplacement);
 
 // CPU
 enum CPUStates {
