@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Nov  7 13:43:32 2021
+# Make data base, printed on Sun Nov  7 17:00:00 2021
 
 # Variables
 
@@ -127,7 +127,7 @@ XDG_SESSION_DESKTOP = unity
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3046
+GIO_LAUNCHED_DESKTOP_FILE_PID = 38954
 # automatic
 %F = $(notdir $%)
 # environment
@@ -195,7 +195,7 @@ SHLVL = 1
 # environment
 IM_CONFIG_PHASE = 1
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-cd62fe4e-eb21-4830-af36-64c3e3fa93f4.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-a0e9d7af-76ad-4127-88ec-f20fed2a4e60.sock
 # environment
 COMPIZ_CONFIG_PROFILE = ubuntu
 # default
@@ -280,7 +280,7 @@ CHROME_DESKTOP = code-url-handler.desktop
  
 LANG = C
 # environment
-VSCODE_PID = 3090
+VSCODE_PID = 38996
 # variable set hash-table stats:
 # Load=135/1024=13%, Rehash=0, Collisions=18/163=11%
 
@@ -412,6 +412,6 @@ clean:
 # strcache performance: lookups = 53 / hit rate = 52%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/53=2%
-# Finished Make data base on Sun Nov  7 13:43:32 2021
+# Finished Make data base on Sun Nov  7 17:00:00 2021
 
  
