@@ -3,10 +3,10 @@
 #include <dirent.h>
 #include <unistd.h>
 
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <iostream>
 
 using std::stof;
 using std::string;
@@ -15,27 +15,28 @@ using std::vector;
 
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::OperatingSystem() {
-return LinuxParser::getValueFromFile("PRETTY_NAME", kOSPath, true);
+  return LinuxParser::getValueFromFile("PRETTY_NAME", kOSPath, true);
 }
 
-string LinuxParser::getValueFromFile(std::string searchValue, std::string filePath, bool doReplacements){
+string LinuxParser::getValueFromFile(std::string searchValue,
+                                     std::string filePath,
+                                     bool doReplacements) {
   string line;
   string key;
   string value;
   std::ifstream filestream(filePath);
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
-     
-     if(doReplacements){
-      std::replace(line.begin(), line.end(), ' ', '_');
-      std::replace(line.begin(), line.end(), '=', ' ');
-      std::replace(line.begin(), line.end(), '"', ' ');
-     }
+      if (doReplacements) {
+        std::replace(line.begin(), line.end(), ' ', '_');
+        std::replace(line.begin(), line.end(), '=', ' ');
+        std::replace(line.begin(), line.end(), '"', ' ');
+      }
       std::istringstream linestream(line);
       while (linestream >> key >> value) {
         if (key == searchValue) {
-          if(doReplacements){
-          std::replace(value.begin(), value.end(), '_', ' ');
+          if (doReplacements) {
+            std::replace(value.begin(), value.end(), '_', ' ');
           }
           return value;
         }
@@ -44,8 +45,6 @@ string LinuxParser::getValueFromFile(std::string searchValue, std::string filePa
   }
   return value;
 }
-
-
 
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::Kernel() {
@@ -80,20 +79,22 @@ vector<int> LinuxParser::Pids() {
   return pids;
 }
 
-// Read and return the system memory utilization
-float LinuxParser::MemoryUtilization() { 
-  std::string memTotal = LinuxParser::getValueFromFile("MemTotal:", kProcDirectory+kMeminfoFilename, false);
-  std::string memFree = LinuxParser::getValueFromFile("MemFree:", kProcDirectory+kMeminfoFilename, false);
+// DONE: Read and return the system memory utilization
+float LinuxParser::MemoryUtilization() {
+  std::string memTotal = LinuxParser::getValueFromFile(
+      "MemTotal:", kProcDirectory + kMeminfoFilename, false);
+  std::string memFree = LinuxParser::getValueFromFile(
+      "MemFree:", kProcDirectory + kMeminfoFilename, false);
 
   int memTotalInt = std::stoi(memTotal);
   int memFreeInt = std::stoi(memFree);
 
-  float result  = 100.00 / memTotalInt * (memTotalInt-memFreeInt); 
+  float result = 100.00 / memTotalInt * (memTotalInt - memFreeInt);
 
-  return result/100;
-  }
+  return result / 100;
+}
 
-// Read and return the system uptime
+// DONE: Read and return the system uptime
 long LinuxParser::UpTime() {
   string uptime;
   string line;
@@ -124,10 +125,20 @@ long LinuxParser::IdleJiffies() { return 0; }
 vector<string> LinuxParser::CpuUtilization() { return {}; }
 
 // TODO: Read and return the total number of processes
-int LinuxParser::TotalProcesses() { return 0; }
+int LinuxParser::TotalProcesses() { 
+    std::string procsRunning = LinuxParser::getValueFromFile(
+      "processes", kProcDirectory + kStatFilename, false);
 
-// TODO: Read and return the number of running processes
-int LinuxParser::RunningProcesses() { return 0; }
+  return std::stoi(procsRunning);
+}
+
+// DONE: Read and return the number of running processes
+int LinuxParser::RunningProcesses() {
+  std::string procsRunning = LinuxParser::getValueFromFile(
+      "procs_running", kProcDirectory + kStatFilename, false);
+
+  return std::stoi(procsRunning);
+}
 
 // TODO: Read and return the command associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
