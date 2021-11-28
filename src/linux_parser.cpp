@@ -173,16 +173,19 @@ string LinuxParser::Command(int pid) {
 
 // DONE: Read and return the memory used by a process
 string LinuxParser::Ram(int pid) {
-  
   string ramMB = "";
 
   string ramKB = getValueFromFile(
       "VmSize:", kProcDirectory + std::to_string(pid) + kStatusFilename, false);
 
-      ramMB = std::to_string(std::stof(ramKB) / 1024);
-
-return ramMB.length()<6?ramMB:ramMB.substr(0,6);
-
+  if (ramKB.size() > 0) {
+    std::ostringstream out;
+    out.precision(2);
+    out << std::fixed << std::stof(ramKB) / 1024;
+    return out.str();
+  } else {
+    return "";
+  }
 }
 
 // DONE: Read and return the user ID associated with a process

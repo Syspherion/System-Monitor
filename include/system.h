@@ -17,11 +17,14 @@ class System {
   int RunningProcesses();             // DONE: See src/system.cpp
   std::string Kernel();               // DONE: See src/system.cpp
   std::string OperatingSystem();      // DONE: See src/system.cpp
+  
 
   // DONE: Define any necessary private members
  private:
   Processor cpu_ = {};
   std::vector<Process> processes_ = {};
+
+  static bool compareProcess(Process &processOne, Process &processTwo);
 };
 
 #endif

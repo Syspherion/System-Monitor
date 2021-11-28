@@ -21,11 +21,20 @@ Processor& System::Cpu() { return cpu_; }
 vector<Process>& System::Processes() {
   std::vector<int> pids = LinuxParser::Pids();
 
+  processes_.clear();
+
   for (auto pid : pids) {
     processes_.push_back(Process(pid));
   }
 
+  std::sort(processes_.begin(), processes_.end(), compareProcess);
+
   return processes_;
+}
+
+bool System::compareProcess(Process &processOne, Process &processTwo)
+{
+    return processOne<processTwo;
 }
 
 // DONE: Returns the system's kernel identifier (string)

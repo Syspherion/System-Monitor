@@ -11,7 +11,14 @@ using std::string;
 using std::to_string;
 using std::vector;
 
-Process::Process(int pid): pid(pid){}
+Process::Process(int pid) : pid(pid) {
+  string ramString = LinuxParser::Ram(pid);
+  if (ramString.size() > 0) {
+    ram = std::stof(ramString);
+  } else {
+    ram = 0;
+  }
+}
 
 // DONE: Return this process's ID
 int Process::Pid() { return pid; }
@@ -32,5 +39,4 @@ string Process::User() { return LinuxParser::User(pid); }
 long int Process::UpTime() { return 0; }
 
 // TODO: Overload the "less than" comparison operator for Process objects
-// REMOVE: [[maybe_unused]] once you define the function
-bool Process::operator<(Process const& a[[maybe_unused]]) const { return true; }
+bool Process::operator<(Process const& a) const { return a.ram < this->ram; }
