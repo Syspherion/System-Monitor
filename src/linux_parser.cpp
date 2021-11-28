@@ -7,11 +7,13 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <unistd.h>
 
 using std::stof;
 using std::string;
 using std::to_string;
 using std::vector;
+
 
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::OperatingSystem() {
@@ -222,6 +224,27 @@ string LinuxParser::Uid(int pid ) {
      return "";
    }
 
-// TODO: Read and return the uptime of a process
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::UpTime(int pid [[maybe_unused]]) { return 0; }
+   // DONE: Read and return the uptime of a process
+   long LinuxParser::UpTime(int pid) {
+     string line;
+     string data;
+
+     std::ifstream filestream(kProcDirectory + std::to_string(pid) +
+                              kStatFilename);
+     std::getline(filestream, line);
+
+     std::istringstream linestream(line);
+
+     int i = 1;
+     while (linestream >> data) {
+       if (i == 22) {
+         if (data.size() > 0) {
+           
+           return std::stoi(data)/sysconf(_SC_CLK_TCK);
+         }
+       }
+       i++;
+     }
+
+     return 0;
+   }

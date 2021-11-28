@@ -35,8 +35,8 @@ string Process::Ram() { return LinuxParser::Ram(pid); }
 // DONE: Return the user (name) that generated this process
 string Process::User() { return LinuxParser::User(pid); }
 
-// TODO: Return the age of this process (in seconds)
-long int Process::UpTime() { return 0; }
+// DONE: Return the age of this process (in seconds)
+long int Process::UpTime() { return LinuxParser::UpTime(pid);}
 
-// TODO: Overload the "less than" comparison operator for Process objects
+// DONE: Overload the "less than" comparison operator for Process objects
 bool Process::operator<(Process const& a) const { return a.ram < this->ram; }
