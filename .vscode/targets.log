@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Nov 28 10:48:06 2021
+# Make data base, printed on Tue Jan 18 16:58:36 2022
 
 # Variables
 
@@ -43,13 +43,13 @@ CURDIR := /home/manuel/workspace/System-Monitor
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/82
+SNAP_DATA = /var/snap/code/85
 # environment
 GDM_LANG = de_DE
 # environment
 VSCODE_NLS_CONFIG = {"locale":"de","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 9:37699
+JOURNAL_STREAM = 9:37245
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-unity:/etc/xdg
 # environment
@@ -73,7 +73,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-_ = /snap/code/82/usr/share/code/code
+_ = /snap/code/85/usr/share/code/code
 # environment
 UNITY_DEFAULT_PROFILE = unity
 # environment
@@ -85,7 +85,7 @@ VSCODE_CWD = /home/manuel
 # environment
 XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/82/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/85/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -95,15 +95,15 @@ UNITY_HAS_3D_SUPPORT = true
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/manuel-laptop:@/tmp/.ICE-unix/1696,unix/manuel-laptop:/tmp/.ICE-unix/1696
+SESSION_MANAGER = local/manuel-laptop:@/tmp/.ICE-unix/1687,unix/manuel-laptop:/tmp/.ICE-unix/1687
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
-SNAP = /snap/code/82
+SNAP = /snap/code/85
 # environment
-SNAP_VERSION = ccbaa2d2
+SNAP_VERSION = 899d46d8
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -113,9 +113,9 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=78b1f2ad-0c3d-4f8a-a324-e9733a75f2d2&iid=78b1f2ad-0c3d-4f8a-a324-e9733a75f2d2&sid=78b1f2ad-0c3d-4f8a-a324-e9733a75f2d2","uploadToServer":true}
 # environment
-INVOCATION_ID = 653a5bc0002e46c7af82373652fb0655
+INVOCATION_ID = a221517b3d564feb9bc88ce5f8eda05c
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/82/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/85/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -127,7 +127,7 @@ XDG_SESSION_DESKTOP = unity
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2592
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2719
 # automatic
 %F = $(notdir $%)
 # environment
@@ -159,7 +159,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/manuel/.config/Code/CachedData/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247
+VSCODE_CODE_CACHE_PATH = /home/manuel/.config/Code/CachedData/899d46d82c4c95423fb7e10e68eba52050e30ba3
 # environment
 LOGNAME = manuel
 # environment
@@ -189,13 +189,13 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SNAP_USER_DATA = /home/manuel/snap/code/82
+SNAP_USER_DATA = /home/manuel/snap/code/85
 # environment
 SHLVL = 1
 # environment
 IM_CONFIG_PHASE = 1
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-8c59b740-590e-4a05-8ad1-5ec85eab75d4.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-482996f5-7d86-4b73-b313-47aa992dfd7f.sock
 # environment
 COMPIZ_CONFIG_PROFILE = ubuntu
 # default
@@ -203,13 +203,13 @@ MAKE_VERSION := 4.2.1
 # environment
 USER = manuel
 # environment
-SNAP_REVISION = 82
+SNAP_REVISION = 85
 # makefile
 .DEFAULT_GOAL := all
 # environment
 XDG_CURRENT_DESKTOP = Unity
 # environment
-MANAGERPID = 1121
+MANAGERPID = 1063
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
@@ -223,7 +223,7 @@ LANGUAGE = de_DE
 # environment
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-1f648071-1.62.3-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-1f648071-1.63.2-main.sock
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
@@ -280,7 +280,7 @@ CHROME_DESKTOP = code-url-handler.desktop
  
 LANG = C
 # environment
-VSCODE_PID = 2634
+VSCODE_PID = 2763
 # variable set hash-table stats:
 # Load=135/1024=13%, Rehash=0, Collisions=18/163=11%
 
@@ -412,6 +412,6 @@ clean:
 # strcache performance: lookups = 53 / hit rate = 52%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/53=2%
-# Finished Make data base on Sun Nov 28 10:48:07 2021
+# Finished Make data base on Tue Jan 18 16:58:36 2022
 
  

@@ -110,19 +110,6 @@ long LinuxParser::UpTime() {
   return std::stol(uptime, &sz);
 }
 
-// TODO: Read and return the number of jiffies for the system
-long LinuxParser::Jiffies() { return 0; }
-
-// TODO: Read and return the number of active jiffies for a PID
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid [[maybe_unused]]) { return 0; }
-
-// TODO: Read and return the number of active jiffies for the system
-long LinuxParser::ActiveJiffies() { return 0; }
-
-// TODO: Read and return the number of idle jiffies for the system
-long LinuxParser::IdleJiffies() { return 0; }
-
 // DONE: Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization() {
   string line;
@@ -175,15 +162,14 @@ string LinuxParser::Command(int pid) {
 
 // DONE: Read and return the memory used by a process
 string LinuxParser::Ram(int pid) {
-  string ramMB = "";
 
-  string ramKB = getValueFromFile(
+  string ramByte = getValueFromFile(
       "VmSize:", kProcDirectory + std::to_string(pid) + kStatusFilename, false);
 
-  if (ramKB.size() > 0) {
+  if (ramByte.size() > 0) {
     std::ostringstream out;
     out.precision(2);
-    out << std::fixed << std::stof(ramKB) / 1024;
+    out << std::fixed << std::stof(ramByte) / 1024 / 1024;
     return out.str();
   } else {
     return "";
@@ -199,7 +185,7 @@ string LinuxParser::Uid(int pid ) {
    return uid; 
    }
 
-   // TODO: Read and return the user associated with a process
+   // DONE: Read and return the user associated with a process
    // REMOVE: [[maybe_unused]] once you define the function
    string LinuxParser::User(int pid) {
      string line;
@@ -247,4 +233,54 @@ string LinuxParser::Uid(int pid ) {
      }
 
      return 0;
+   }
+
+   // TODO: Read and return the CPU of a process
+   float LinuxParser::Cpu(int pid) {
+     string line;
+     string data;
+
+     long utime;
+     long stime;
+     long cutime;
+     long cstime;
+     long starttime;
+
+     long hertz = sysconf(_SC_CLK_TCK);
+
+     std::ifstream filestream(kProcDirectory + std::to_string(pid) +
+                              kStatFilename);
+     std::getline(filestream, line);
+
+     std::istringstream linestream(line);
+
+     int i = 1;
+     while (linestream >> data) {
+       if (data.size() > 0) {
+         if (i == 14) {
+           utime = std::stoi(data);
+         }
+         if (i == 15) {
+           stime = std::stoi(data);
+         }
+         if (i == 16) {
+           cutime = std::stoi(data);
+         }
+         if (i == 17) {
+           cstime = std::stoi(data);
+         }
+         if (i == 22) {
+           starttime = std::stoi(data);
+         }
+       }
+       i++;
+     }
+
+     long totalTime = utime + stime;
+
+     totalTime = totalTime + cutime + cstime;
+
+     float seconds = UpTime() - (starttime / hertz);
+
+     return totalTime / hertz / seconds;
    }
