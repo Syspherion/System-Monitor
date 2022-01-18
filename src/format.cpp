@@ -7,10 +7,8 @@ using std::string;
 using std::to_string;
 using namespace std;
 
-// TODO: Complete this helper function
 // INPUT: Long int measuring seconds
 // OUTPUT: HH:MM:SS
-// REMOVE: [[maybe_unused]] once you define the function
 string Format::ElapsedTime(long seconds) {
   long timeLeft = seconds % 3600;
   long hours = (seconds - timeLeft) / 3600;

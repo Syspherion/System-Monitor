@@ -235,7 +235,7 @@ string LinuxParser::Uid(int pid ) {
      return 0;
    }
 
-   // TODO: Read and return the CPU of a process
+   // DONE: Read and return the CPU of a process
    float LinuxParser::Cpu(int pid) {
      string line;
      string data;
