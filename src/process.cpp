@@ -7,9 +7,7 @@
 #include "process.h"
 #include "linux_parser.h"
 
-using std::string;
-using std::to_string;
-using std::vector;
+using namespace std;
 
 Process::Process(int pid) : pid(pid) {
   string ramString = LinuxParser::Ram(pid);
@@ -27,7 +25,16 @@ int Process::Pid() { return pid; }
 float Process::CpuUtilization() { return LinuxParser::Cpu(pid); }
 
 // DONE: Return the command that generated this process
-string Process::Command() { return LinuxParser::Command(pid); }
+string Process::Command() {
+  string fullCommand = LinuxParser::Command(pid);
+
+ //Added some substring handling to cleanup the format.
+  if (fullCommand.length() > 40) {
+    return fullCommand.substr(0, 40) + "...";
+  } else {
+    return fullCommand;
+  }
+}
 
 // DONE: Return this process's memory utilization
 string Process::Ram() { return LinuxParser::Ram(pid); }

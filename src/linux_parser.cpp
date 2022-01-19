@@ -84,9 +84,9 @@ vector<int> LinuxParser::Pids() {
 // DONE: Read and return the system memory utilization
 float LinuxParser::MemoryUtilization() {
   std::string memTotal = LinuxParser::getValueFromFile(
-      "MemTotal:", kProcDirectory + kMeminfoFilename, false);
+      filterMemTotalString, kProcDirectory + kMeminfoFilename, false);
   std::string memFree = LinuxParser::getValueFromFile(
-      "MemFree:", kProcDirectory + kMeminfoFilename, false);
+      filterMemFreeString, kProcDirectory + kMeminfoFilename, false);
 
   int memTotalInt = std::stoi(memTotal);
   int memFreeInt = std::stoi(memFree);
@@ -137,7 +137,7 @@ vector<string> LinuxParser::CpuUtilization() {
 // DONE: Read and return the total number of processes
 int LinuxParser::TotalProcesses() {
   std::string procsRunning = LinuxParser::getValueFromFile(
-      "processes", kProcDirectory + kStatFilename, false);
+      filterProcesses, kProcDirectory + kStatFilename, false);
 
   return std::stoi(procsRunning);
 }
@@ -145,7 +145,7 @@ int LinuxParser::TotalProcesses() {
 // DONE: Read and return the number of running processes
 int LinuxParser::RunningProcesses() {
   std::string procsRunning = LinuxParser::getValueFromFile(
-      "procs_running", kProcDirectory + kStatFilename, false);
+      filterRunningProcesses, kProcDirectory + kStatFilename, false);
 
   return std::stoi(procsRunning);
 }
@@ -163,13 +163,19 @@ string LinuxParser::Command(int pid) {
 // DONE: Read and return the memory used by a process
 string LinuxParser::Ram(int pid) {
 
-  string ramByte = getValueFromFile(
-      "VmSize:", kProcDirectory + std::to_string(pid) + kStatusFilename, false);
+  // PS - Moreover when you replace then please put a comment stating that you
+  // have used VmRSS instead of VmSize because it might happen that another
+  // reviewer is following the Udacity guideline and so he/she might make it a
+  // required change but once you put the comment with the link to the resources
+  // then he will surely understand that!
+  //https://man7.org/linux/man-pages/man5/proc.5.html
+  string ramKByte = getValueFromFile(
+     filterProcMem, kProcDirectory + std::to_string(pid) + kStatusFilename, false);
 
-  if (ramByte.size() > 0) {
+  if (ramKByte.size() > 0) {
     std::ostringstream out;
     out.precision(2);
-    out << std::fixed << std::stof(ramByte) / 1024 / 1024;
+    out << std::fixed << std::stof(ramKByte) / 1024;
     return out.str();
   } else {
     return "";
@@ -180,7 +186,7 @@ string LinuxParser::Ram(int pid) {
 string LinuxParser::Uid(int pid ) {
   
     std::string uid = LinuxParser::getValueFromFile(
-      "Uid:", kProcDirectory + std::to_string(pid) + kStatusFilename, false);
+      filterUID, kProcDirectory + std::to_string(pid) + kStatusFilename, false);
 
    return uid; 
    }
@@ -215,6 +221,8 @@ string LinuxParser::Uid(int pid ) {
      string line;
      string data;
 
+     long hertz = sysconf(_SC_CLK_TCK);
+
      std::ifstream filestream(kProcDirectory + std::to_string(pid) +
                               kStatFilename);
      std::getline(filestream, line);
@@ -226,7 +234,8 @@ string LinuxParser::Uid(int pid ) {
        if (i == 22) {
          if (data.size() > 0) {
            
-           return std::stoi(data)/sysconf(_SC_CLK_TCK);
+           return std::stoi(data)/hertz;
+           return UpTime() - (std::stoi(data) / hertz);
          }
        }
        i++;

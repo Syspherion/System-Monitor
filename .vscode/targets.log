@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jan 18 16:58:36 2022
+# Make data base, printed on Wed Jan 19 16:41:26 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ GDM_LANG = de_DE
 # environment
 VSCODE_NLS_CONFIG = {"locale":"de","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 9:37245
+JOURNAL_STREAM = 9:36378
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-unity:/etc/xdg
 # environment
@@ -95,7 +95,7 @@ UNITY_HAS_3D_SUPPORT = true
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/manuel-laptop:@/tmp/.ICE-unix/1687,unix/manuel-laptop:/tmp/.ICE-unix/1687
+SESSION_MANAGER = local/manuel-laptop:@/tmp/.ICE-unix/1652,unix/manuel-laptop:/tmp/.ICE-unix/1652
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -113,7 +113,7 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=78b1f2ad-0c3d-4f8a-a324-e9733a75f2d2&iid=78b1f2ad-0c3d-4f8a-a324-e9733a75f2d2&sid=78b1f2ad-0c3d-4f8a-a324-e9733a75f2d2","uploadToServer":true}
 # environment
-INVOCATION_ID = a221517b3d564feb9bc88ce5f8eda05c
+INVOCATION_ID = a2cbed3d6da443b487c27fef17757b60
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/85/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -127,7 +127,7 @@ XDG_SESSION_DESKTOP = unity
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2719
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2789
 # automatic
 %F = $(notdir $%)
 # environment
@@ -195,7 +195,7 @@ SHLVL = 1
 # environment
 IM_CONFIG_PHASE = 1
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-482996f5-7d86-4b73-b313-47aa992dfd7f.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-36afd1a5-b779-4dee-892c-e2fb2748d852.sock
 # environment
 COMPIZ_CONFIG_PROFILE = ubuntu
 # default
@@ -209,7 +209,7 @@ SNAP_REVISION = 85
 # environment
 XDG_CURRENT_DESKTOP = Unity
 # environment
-MANAGERPID = 1063
+MANAGERPID = 1036
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
@@ -280,7 +280,7 @@ CHROME_DESKTOP = code-url-handler.desktop
  
 LANG = C
 # environment
-VSCODE_PID = 2763
+VSCODE_PID = 2839
 # variable set hash-table stats:
 # Load=135/1024=13%, Rehash=0, Collisions=18/163=11%
 
@@ -412,6 +412,6 @@ clean:
 # strcache performance: lookups = 53 / hit rate = 52%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/53=2%
-# Finished Make data base on Tue Jan 18 16:58:36 2022
+# Finished Make data base on Wed Jan 19 16:41:27 2022
 
  
